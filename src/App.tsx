@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Settings, Play, RotateCcw, CheckCircle2, AlertCircle, Coins, Wallet, Landmark } from 'lucide-react';
+import { Settings, Play, RotateCcw, CheckCircle2, AlertCircle, Coins, Wallet, Landmark, Eye, EyeOff } from 'lucide-react';
 
 interface Banknote {
   id: number;
@@ -16,6 +16,7 @@ const App: React.FC = () => {
   const [unidades, setUnidades] = useState<Banknote[]>([]);
   const [showFeedback, setShowFeedback] = useState<'success' | 'error' | 'over' | null>(null);
   const [feedbackMsg, setFeedbackMsg] = useState('');
+  const [showTotal, setShowTotal] = useState(false);
 
   const total = centenas.length * 100 + decenas.length * 10 + unidades.length * 1;
 
@@ -62,7 +63,7 @@ const App: React.FC = () => {
     return (
       <div className="setup-container">
         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="setup-card">
-          <h1><Settings size={32} /> Modo Padres</h1>
+          <h1>Vamos a descomponer el número...</h1>
           <p>Define el número objetivo (1 - 199)</p>
           <input 
             type="number" 
@@ -84,10 +85,15 @@ const App: React.FC = () => {
     <div className="game-container">
       <header>
         <div className="target-display">Objetivo: <span>{target}</span></div>
-        <div className="current-total">Llevamos: <span>${total}</span></div>
-        <button className="reset-btn" onClick={() => { setIsConfigured(false); resetGame(); }}>
-          <Settings size={20} />
-        </button>
+        <div className="current-total">Llevamos: <span>{showTotal ? `$${total}` : '$??'}</span></div>
+        <div className="header-actions">
+          <button className="help-btn" onClick={() => setShowTotal(!showTotal)} title="Ayuda">
+            {showTotal ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+          <button className="reset-btn" onClick={() => { setIsConfigured(false); resetGame(); setShowTotal(false); }}>
+            <Settings size={20} />
+          </button>
+        </div>
       </header>
 
       <main>
@@ -122,7 +128,7 @@ const App: React.FC = () => {
           {centenas.length > 0 && <span>{centenas.length * 100}</span>}
           {decenas.length > 0 && <span>{centenas.length > 0 ? ' + ' : ''}{decenas.length * 10}</span>}
           {unidades.length > 0 && <span>{(centenas.length > 0 || decenas.length > 0) ? ' + ' : ''}{unidades.length}</span>}
-          {(total > 0) && <span> = {total}</span>}
+          {(total > 0) && <span> = {showTotal ? total : '??'}</span>}
         </div>
       </main>
 
@@ -133,13 +139,13 @@ const App: React.FC = () => {
         <button onClick={() => handleAdd('D')} className="bank-note d-note">
           $10
         </button>
-        <button onClick={() => handleAdd('U')} className="bank-note u-note">
+        <button onClick={() => handleAdd('U')} className="bank-note u-note coin-gold">
           $1
         </button>
       </div>
 
       <div className="actions">
-        <button className="check-btn" onClick={checkResult}>PAGAR</button>
+        <button className="check-btn" onClick={checkResult}>LISTO</button>
         <button className="clear-btn" onClick={resetGame}><RotateCcw size={20} /></button>
       </div>
 

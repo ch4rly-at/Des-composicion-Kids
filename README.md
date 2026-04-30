@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# Des-composición-Kids 💰🧩
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Des-composición-Kids** es una aplicación educativa interactiva diseñada para ayudar a los niños a entender la composición y descomposición de números del 1 al 199. Utiliza una metáfora financiera con billetes y monedas para hacer el aprendizaje tangible y divertido.
 
-Currently, two official plugins are available:
+## 🌟 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Modo Padres/Docentes**: Permite establecer un número objetivo personalizado.
+- **Aprendizaje por Categorías**: Separación clara entre Centenas, Decenas y Unidades.
+- **Billetes y Monedas**:
+  - 🟦 **$100** (Centenas)
+  - 🟥 **$10** (Decenas)
+  - 🟩 **$1** (Unidades)
+- **Fórmula Visual**: Muestra la descomposición en tiempo real (ej: 100 + 40 + 5 = 145).
+- **Feedback Inteligente**:
+  - Mensajes de felicitación al lograr el objetivo.
+  - Avisos si falta dinero o si se pasaron.
+- **Animaciones Suaves**: Utiliza Framer Motion para una experiencia fluida.
 
-## React Compiler
+## 🚀 Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + TypeScript
+- Vite
+- Framer Motion
+- Lucide React (Iconos)
+- Vanilla CSS
 
-## Expanding the ESLint configuration
+## 🛠️ Instalación y Despliegue
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Local
+1. Clona el repositorio.
+2. Instala dependencias: `npm install`.
+3. Inicia el servidor: `npm run dev`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Despliegue en GitHub Pages
+Para publicar cambios en la versión online:
+```bash
+npm run deploy
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+*Desarrollado para fomentar el pensamiento lógico-matemático de forma lúdica.*
